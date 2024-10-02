@@ -91,7 +91,10 @@ public class LinkedListDriver {
                 list.print();
                 break;
             case "l": // length
-
+                System.out.print("The length of the list is ");
+                int length = list.length();
+                System.out.print(length);
+                System.out.println("");
                 break;
             case "t": // print reverse
 

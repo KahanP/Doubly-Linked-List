@@ -51,7 +51,19 @@ public class DoublyLinkedList<T extends Comparable<T>> {
     } // deleteItem
 
     public int length() {
-        return -1;
+
+        int length = 0;
+
+        if (head == null) {
+            return length;
+        }
+        NodeType<T> current = head;
+        while (current != null) {
+            current = current.next;
+            length++;
+        } // count nodes
+
+        return length;
     } // length
 
     public void print() {
