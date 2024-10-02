@@ -13,16 +13,18 @@ public class LinkedListDriver {
         } // if
 
         String fileName = args[0];
+        DoublyLinkedList<?> list = new DoublyLinkedList<>();
 
-        System.out.print("Enter list type (i - int, d - double, s - string):");
+        System.out.print("Enter list type (i - int, d - double, s - string): ");
         Scanner textScanner = new Scanner(System.in);
         String type = textScanner.nextLine();
-        if (type == "i") {
-            DoublyLinkedList<Integer> list = new DoublyLinkedList<>();
-        } else if (type == "d") {
-            DoublyLinkedList<Double> list = new DoublyLinkedList<>();
-        } else if (type == "s") {
-            DoublyLinkedList<String> list = new DoublyLinkedList<>();
+        System.out.print("TYPE: " + type);
+        if (type.equals("i")) {
+            list = new DoublyLinkedList<Integer>();
+        } else if (type.equals("d")) {
+            list = new DoublyLinkedList<Double>();
+        } else if (type.equals("s")) {
+            list = new DoublyLinkedList<String>();
         } else {
             System.out.println("Invalid list type, system exiting...");
             System.exit(0);
@@ -37,6 +39,19 @@ public class LinkedListDriver {
             // turn file into a SortedLinked List
             while (fileScanner.hasNext()) {
 
+                if (type.equals("i") && fileScanner.hasNextInt()) {
+                    int item = fileScanner.nextInt();
+                    ((DoublyLinkedList<Integer>) list).insertItem(item);
+                } else if (type.equals("d") && fileScanner.hasNextDouble()) {
+                    double item = fileScanner.nextDouble();
+                    ((DoublyLinkedList<Double>) list).insertItem(item);
+                } else if (type.equals("s")) {
+                    String item = fileScanner.next();
+                    ((DoublyLinkedList<String>) list).insertItem(item);
+                } else {
+                    System.out.println("Invalid data type in file or mismatching item type.");
+                    break;
+                }
 
             } // while
 
@@ -58,5 +73,51 @@ public class LinkedListDriver {
             "(s) - Swap Alternate\n" +
             "(q) - Quit program\n\n");
 
+        boolean quit = false;
+        while (!quit) {
+
+            System.out.print("Enter a command: ");
+            String command = textScanner.nextLine();
+
+            switch(command) {
+            case "i": // insert
+
+                break;
+            case "d": // delete value
+
+                break;
+            case "p": // print list
+                System.out.print("The list is : ");
+                list.print();
+                break;
+            case "l": // length
+
+                break;
+            case "t": // print reverse
+
+                break;
+            case "r": // reverse list
+
+                break;
+            case "b": // delete subsection
+
+                break;
+            case "s": // swap alt
+
+                break;
+            case "q": // quit
+                System.out.println("Exiting the program");
+                quit = true;
+                System.exit(0);
+                break;
+            default:
+                System.out.println("Invalid command try again");
+                break;
+            } // switch case
+
+
+        } // main functioning loop
+
     } // main
+
 } // LinkedListDriver
