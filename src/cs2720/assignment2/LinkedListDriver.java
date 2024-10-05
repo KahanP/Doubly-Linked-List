@@ -34,8 +34,6 @@ public class LinkedListDriver {
             System.exit(0);
         }
 
-
-
         try {
             File file = new File(fileName);
             Scanner fileScanner = new Scanner(file);
@@ -54,11 +52,9 @@ public class LinkedListDriver {
                     ((DoublyLinkedList<String>) list).insertItem(item);
                 } else {
                     System.out.println("Invalid data type in file or mismatching item type.");
-                    break;
-                }
+                    break;                }
 
             } // while
-
             fileScanner.close();
         } catch (Exception e) {
             System.out.println(e);
@@ -82,7 +78,6 @@ public class LinkedListDriver {
 
             System.out.print("Enter a command: ");
             String command = textScanner.nextLine();
-
 
             switch(command) {
             case "i": // insert
@@ -133,8 +128,6 @@ public class LinkedListDriver {
                 list.print();
                 System.out.print("The reverse list: ");
                 list.printReverse();
-
-
                 break;
             case "p": // print listh
                 System.out.print("The list is : ");
@@ -155,9 +148,7 @@ public class LinkedListDriver {
                 list.print();
                 System.out.print("The reversed list: ");
                 list.reverseList();
-                //list.print();
-
-
+                list.print();
                 break;
             case "b": // delete subsection
                 try {
@@ -222,7 +213,6 @@ public class LinkedListDriver {
                 System.out.println("Invalid command try again");
                 break;
             } // switch case
-
 
         } // main functioning loop
 
