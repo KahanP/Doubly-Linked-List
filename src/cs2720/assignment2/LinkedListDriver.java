@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class LinkedListDriver {
 
+    @SuppressWarnings("unchecked")
     public static void main(String[] args) {
         if (args.length != 1) {
             System.out.println("add input text file, exiting...");
@@ -18,13 +19,16 @@ public class LinkedListDriver {
         System.out.print("Enter list type (i - int, d - double, s - string): ");
         Scanner textScanner = new Scanner(System.in);
         String type = textScanner.nextLine();
-        System.out.print("TYPE: " + type);
+        String dataType = null;
         if (type.equals("i")) {
             list = new DoublyLinkedList<Integer>();
+            dataType = "integer";
         } else if (type.equals("d")) {
             list = new DoublyLinkedList<Double>();
+            dataType = "double";
         } else if (type.equals("s")) {
             list = new DoublyLinkedList<String>();
+            dataType = "string";
         } else {
             System.out.println("Invalid list type, system exiting...");
             System.exit(0);
@@ -79,14 +83,35 @@ public class LinkedListDriver {
             System.out.print("Enter a command: ");
             String command = textScanner.nextLine();
 
+
             switch(command) {
             case "i": // insert
 
                 break;
             case "d": // delete value
+                System.out.print("Enter a " + dataType + " to delete: ");
+                String input = textScanner.nextLine();
+                try {
+                    if (dataType.equals("integer")) {
+                        Integer itemToDelete = Integer.parseInt(input);
+                        ((DoublyLinkedList<Integer>) list).deleteItem(itemToDelete);
+                    } else if (dataType.equals("double")) {
+                        Double itemToDelete = Double.parseDouble(input);
+                        ((DoublyLinkedList<Double>) list).deleteItem(itemToDelete);
+                    } else if (dataType.equals("string")) {
+                        ((DoublyLinkedList<String>) list).deleteItem(input);
+                    } else {
+                        throw new IllegalArgumentException("Invalid data type");
+                    }
+                } catch (IllegalArgumentException e) {
+                    System.out.println("Invalid input please enter a valid " + dataType);
+                } // convert input to generic
+                System.out.print("The list is: ");
+                list.print();
+
 
                 break;
-            case "p": // print list
+            case "p": // print listhow
                 System.out.print("The list is : ");
                 list.print();
                 break;

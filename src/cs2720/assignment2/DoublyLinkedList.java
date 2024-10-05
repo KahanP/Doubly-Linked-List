@@ -48,6 +48,36 @@ public class DoublyLinkedList<T extends Comparable<T>> {
 
     public void deleteItem(T item) {
 
+        if (this.head == null) {
+            System.out.println("You cannot delete from an empty list");
+            return;
+        } // null check
+
+        NodeType<T> current = this.head;
+        if (item.equals(current.info)) {
+            if (current.next == null) {
+                this.head = null;
+            } else {
+                this.head = current.next;
+                this.head.back = null;
+            } // if/else
+            return;
+        } // check if head needs to be deleted
+
+        // traverse the list to find the node
+        while (current != null && !item.equals(current.info)) {
+            current = current.next;
+        } // while
+
+        if (current != null) {
+            if (current.next != null) {
+                current.next.back = current.back;
+            } // if
+            if (current.back != null) {
+                current.back.next = current.next;
+            }
+        } // delete the node
+
     } // deleteItem
 
     public int length() {
