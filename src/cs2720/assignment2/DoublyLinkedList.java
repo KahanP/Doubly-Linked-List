@@ -190,6 +190,22 @@ public class DoublyLinkedList<T extends Comparable<T>> {
 
     } // deleteSubsection
 
-    // swapAlternate
+    public void swapAlternate() {
+        // checks if the list is empty or only has one element
+        if (this.head == null || this.head.next == null) {
+            return; // exits as no swap required with no or one element
+        }
+
+        // current points to the head of the list
+        NodeType<T> current = this.head;
+
+        // loop through the list
+        while (current != null && current.next != null) {
+            T temp = current.info; // store the val of the current node
+            current.info = current.next.info; // replace current node's value with next node's value
+            current.next.info = temp; // set's the next node's value to the original current node's
+            current = current.next.next; // move to the node after next to continue swapping
+        }
+    } // swapAlternate
 
 } // DoublyLinkedList

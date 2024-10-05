@@ -192,7 +192,26 @@ public class LinkedListDriver {
                 } // convert input to generic
                 break;
             case "s": // swap alt
+                System.out.print("The original list: ");
+                list.print();
 
+                // swapAlternate based on the type of the list
+                if (dataType.equals("integer")) {
+                    ((DoublyLinkedList<Integer>) list).swapAlternate();
+                } else if (dataType.equals("double")) {
+                    ((DoublyLinkedList<Double>) list).swapAlternate();
+                } else if (dataType.equals("string")) {
+                    ((DoublyLinkedList<String>) list).swapAlternate();
+                }
+
+                // print modified list
+                System.out.print("The modified list: ");
+                list.print();
+                // print the reverse list if the list contains more than 2 elements
+                if (list.length() > 2) {
+                    System.out.print("The reverse list: ");
+                    list.printReverse();
+                }
                 break;
             case "q": // quit
                 System.out.println("Exiting the program");
