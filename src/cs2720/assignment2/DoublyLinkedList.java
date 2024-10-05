@@ -38,6 +38,11 @@ public class DoublyLinkedList<T extends Comparable<T>> {
             while (current != null && item.compareTo(current.info) > 0) {
                 current = current.next;
             } // traverse the list
+
+            if (item.equals(current.info)) {
+                System.out.println("Item already exists");
+                return;
+            }
             newNode.next = current;
             newNode.back = current.back;
             current.back.next = newNode;
@@ -68,6 +73,11 @@ public class DoublyLinkedList<T extends Comparable<T>> {
         while (current != null && !item.equals(current.info)) {
             current = current.next;
         } // while
+
+        if (current == null) {
+           System.out.println("The item is not present in the list");
+          return;
+        } //  if
 
         if (current != null) {
             if (current.next != null) {
@@ -111,12 +121,39 @@ public class DoublyLinkedList<T extends Comparable<T>> {
     } // print
 
     public void printReverse() {
+        if (this.head == null) {
+            System.out.print(" ");
+        }
+        NodeType<T> current = this.tail;
+        while (current != null) {
+            System.out.print(current.info + " ");
+            current = current.back;
+
+        } // traverse list
+        System.out.println("");
 
     } // printreverse
 
-    // deleteSubsection
+    public void reverseList() {
+        if (this.head == null) {
+            System.out.print(" ");
+        } // check if list exists
+        NodeType<T> current = this.tail;
+        while (current != null) {
+            NodeType<T> temp = current.next;
+            current.next = current.back;
+            current.back = temp;
 
-    // reverseList
+            current = current.next;
+        } // reversal
+
+        NodeType<T> tempHead = this.head;
+        this.head = this.tail;
+        this.tail = tempHead;
+
+    } // reverseList
+
+    // deleteSubsection
 
     // swapAlternate
 

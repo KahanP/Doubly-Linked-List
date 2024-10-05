@@ -86,20 +86,19 @@ public class LinkedListDriver {
 
             switch(command) {
             case "i": // insert
-
-                break;
-            case "d": // delete value
-                System.out.print("Enter a " + dataType + " to delete: ");
-                String input = textScanner.nextLine();
+                System.out.print("The list is: ");
+                list.print();
+                System.out.print("Enter a " + dataType + " to insert: ");
+                String insertInput = textScanner.nextLine();
                 try {
                     if (dataType.equals("integer")) {
-                        Integer itemToDelete = Integer.parseInt(input);
-                        ((DoublyLinkedList<Integer>) list).deleteItem(itemToDelete);
+                        Integer itemToInsert = Integer.parseInt(insertInput);
+                        ((DoublyLinkedList<Integer>) list).insertItem(itemToInsert);
                     } else if (dataType.equals("double")) {
-                        Double itemToDelete = Double.parseDouble(input);
-                        ((DoublyLinkedList<Double>) list).deleteItem(itemToDelete);
+                        Double itemToInsert = Double.parseDouble(insertInput);
+                        ((DoublyLinkedList<Double>) list).insertItem(itemToInsert);
                     } else if (dataType.equals("string")) {
-                        ((DoublyLinkedList<String>) list).deleteItem(input);
+                        ((DoublyLinkedList<String>) list).insertItem(insertInput);
                     } else {
                         throw new IllegalArgumentException("Invalid data type");
                     }
@@ -108,10 +107,36 @@ public class LinkedListDriver {
                 } // convert input to generic
                 System.out.print("The list is: ");
                 list.print();
+                System.out.print("The reverse list: ");
+                list.printReverse();
+
+                break;
+            case "d": // delete value
+                System.out.print("Enter a " + dataType + " to delete: ");
+                String deleteInput = textScanner.nextLine();
+                try {
+                    if (dataType.equals("integer")) {
+                        Integer itemToDelete = Integer.parseInt(deleteInput);
+                        ((DoublyLinkedList<Integer>) list).deleteItem(itemToDelete);
+                    } else if (dataType.equals("double")) {
+                        Double itemToDelete = Double.parseDouble(deleteInput);
+                        ((DoublyLinkedList<Double>) list).deleteItem(itemToDelete);
+                    } else if (dataType.equals("string")) {
+                        ((DoublyLinkedList<String>) list).deleteItem(deleteInput);
+                    } else {
+                        throw new IllegalArgumentException("Invalid data type");
+                    }
+                } catch (IllegalArgumentException e) {
+                    System.out.println("Invalid input please enter a valid " + dataType);
+                } // convert input to generic
+                System.out.print("The list is: ");
+                list.print();
+                System.out.print("The reverse list: ");
+                list.printReverse();
 
 
                 break;
-            case "p": // print listhow
+            case "p": // print listh
                 System.out.print("The list is : ");
                 list.print();
                 break;
@@ -122,9 +147,16 @@ public class LinkedListDriver {
                 System.out.println("");
                 break;
             case "t": // print reverse
-
+                System.out.print("The reverse list: ");
+                list.printReverse();
                 break;
             case "r": // reverse list
+                System.out.print("The original list: ");
+                list.print();
+                System.out.print("The reversed list: ");
+                list.reverseList();
+                //list.print();
+
 
                 break;
             case "b": // delete subsection
