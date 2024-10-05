@@ -160,7 +160,36 @@ public class LinkedListDriver {
 
                 break;
             case "b": // delete subsection
+                try {
+                    System.out.print("Enter lower bound: ");
+                    String lowerBoundInput = textScanner.nextLine();
+                    System.out.print("Enter upper bound: ");
+                    String upperBoundInput = textScanner.nextLine();
 
+                    System.out.print("The original list: ");
+                    list.print(); // before the list is modified
+
+                    if (dataType.equals("integer")) {
+                        Integer lowerBound = Integer.parseInt(lowerBoundInput);
+                        Integer upperBound = Integer.parseInt(upperBoundInput);
+                        ((DoublyLinkedList<Integer>) list).deleteSubsection(lowerBound, upperBound);
+                    } else if (dataType.equals("double")) {
+                        Double lowerBound = Double.parseDouble(lowerBoundInput);
+                        Double  upperBound = Double.parseDouble(upperBoundInput);
+                        ((DoublyLinkedList<Double>) list).deleteSubsection(lowerBound, upperBound);
+                    } else if (dataType.equals("string")) {
+                        ((DoublyLinkedList<String>) list).deleteSubsection(lowerBoundInput, upperBoundInput);
+                    } else {
+                         throw new IllegalArgumentException("Invalid data type");
+                    }
+
+                    System.out.print("The modified list: ");
+                    list.print(); // same command but after list has been modified
+                    System.out.print("The reverse list: ");
+                    list.printReverse();
+                } catch (IllegalArgumentException e) {
+                     System.out.println("Invalid input please enter a valid " + dataType);
+                } // convert input to generic
                 break;
             case "s": // swap alt
 

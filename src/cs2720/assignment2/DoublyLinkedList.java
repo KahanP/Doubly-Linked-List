@@ -153,7 +153,42 @@ public class DoublyLinkedList<T extends Comparable<T>> {
 
     } // reverseList
 
-    // deleteSubsection
+    public void deleteSubsection(T lowerBound, T upperBound) {
+        if (this.head == null) {
+            System.out.println(" ");
+        } // check if list exists
+
+        // start from the head
+        NodeType<T> current = this.head;
+
+        // loop through the list
+        while (current != null) {
+            if (current.info.compareTo(lowerBound) >= 0 && current.info.compareTo(upperBound) <= 0){
+                NodeType<T> toDelete = current; // node to be deleted
+                current = current.next; // move to next node before deletion
+
+                if (toDelete == head) { // if the node to be deleted is the head of the list
+                    head = head.next;
+                    if (head != null) {
+                        head.back = null;
+                    } else {
+                        tail = null;
+                    }
+                } else if (toDelete == tail) { // if the node to be deleted is the tail of the list
+                    tail = tail.back;
+                    if (tail != null) {
+                        tail.next = null;
+                    }
+                } else { // if the node to be deleted is in the middle of the list
+                    toDelete.back.next = toDelete.next;
+                    toDelete.next.back = toDelete.back;
+                }
+            } else {
+                current = current.next;
+            }
+        } // while
+
+    } // deleteSubsection
 
     // swapAlternate
 
