@@ -38,4 +38,40 @@ Project 2:
 
     4) Repeat steps 3a-3c until all nodes within the range are deleted or the end of the list is reached.
 
-   => reverseList --- O()
+   => reverseList --- O(n)
+    1) Check if the list is empty:
+     - If 'head' is null, print a message.
+
+    2) Initialize a pointer 'current' to the tall of the list.
+
+    3) Traverse the list from the tail to head: -------------- O(n)
+     - For each node:
+      a. Store the 'next' pointer in a temporary variable 'temp'.
+      b. Swap the 'next' and 'back' pointers of the current node/
+      c. Move 'current' to the original 'back' node, now store in 'current.next'.
+
+    4) After reversing all the nodes, swap the head and the tail: -------------- O(1)
+     - Store the current 'head' in a temporary variable 'tempHead'.
+     - Set 'head' to 'tail'.
+     - Set 'tail' to 'tempHead'.
+
+    5) Update the 'back' pointer of the new head:
+     - If the list is not empty, set the 'back' pointer of the new head to 'null'.
+
+    6) Update the 'next' pointer of the new tail:
+     - If the list is not empty, set the 'next' pointer of the new tail to 'null'.
+
+   => swapAlt --- O(n)
+    1) Check if the list is empty:
+     - If 'head' is null or 'head.next' is null, return.
+
+    2) Initialize a pointer 'current' to point to the head of the list.
+
+    3) Loop through the list: ----------------- O(n)
+     - While 'current' is not null and 'current.next' is not null:
+      a. Store the value of the current node ('current.info') in a te,porary variable 'temp'.
+      b. Set the value of 'current' to the value of 'current.next'.
+      c. Set the value of 'current.next' to 'temp'.
+      d. Move 'current' to the node after 'current.next' (i.e., 'current = current.next.next').
+
+    4) Repeat the process until you have traversed the list and swapped all adjacent nodes.
