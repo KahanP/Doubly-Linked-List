@@ -128,10 +128,12 @@ public class LinkedListDriver {
                 } catch (IllegalArgumentException e) {
                     System.out.println("Invalid input please enter a valid " + dataType);
                 } // convert input to generic
-                System.out.print("The list is: ");
-                list.print();
-                System.out.print("The reverse list: ");
-                list.printReverse();
+                if (list.length() != 0) {
+                    System.out.print("The list is: ");
+                    list.print();
+                    System.out.print("The reverse list: ");
+                    list.printReverse();
+                } // check if list is empty
                 break;
             case "p": // print list
                 System.out.print("The list is : ");
@@ -156,9 +158,9 @@ public class LinkedListDriver {
                 break;
             case "b": // delete subsection
                 try {
-                    System.out.print("Enter lower bound: ");
+                    System.out.print("Enter the lower bound: ");
                     String lowerBoundInput = textScanner.nextLine();
-                    System.out.print("Enter upper bound: ");
+                    System.out.print("Enter the upper bound: ");
                     String upperBoundInput = textScanner.nextLine();
 
                     System.out.print("The original list: ");
@@ -179,16 +181,27 @@ public class LinkedListDriver {
                     }
 
                     System.out.print("The modified list: ");
-                    list.print(); // same command but after list has been modified
-                    System.out.print("The reverse list: ");
-                    list.printReverse();
+                    if (list.length() != 0) {
+                        list.print(); // print after list is modified
+                    } else {
+                        System.out.println();
+                    } // check if list is null
+                    if (list.length() != 0) {
+                        System.out.print("The reverse list: ");
+                        list.printReverse(); // print reversed modified
+                    }
+
                 } catch (IllegalArgumentException e) {
                      System.out.println("Invalid input please enter a valid " + dataType);
                 } // convert input to generic
                 break;
             case "s": // swap alt
                 System.out.print("The original list: ");
-                list.print();
+                if (list.length() != 0) {
+                    list.print(); // print reversed modified
+                } else {
+                    System.out.println();
+                } // check if list is null
 
                 // swapAlternate based on the type of the list
                 if (dataType.equals("integer")) {
@@ -202,6 +215,9 @@ public class LinkedListDriver {
                 // print modified list
                 System.out.print("The modified list: ");
                 list.print();
+                if (list.length() == 0) {
+                    System.out.println();
+                }
                 // print the reverse list if the list contains more than 2 elements
                 if (list.length() > 2) {
                     System.out.print("The reverse list: ");

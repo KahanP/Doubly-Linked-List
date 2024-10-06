@@ -39,7 +39,7 @@ public class DoublyLinkedList<T extends Comparable<T>> {
                 current = current.next;
             } // traverse the list
 
-            if (item.equals(current.info)) {
+            if (item.equals(current.info)) { // check if item exists in list
                 System.out.println("Item already exists");
                 return;
             }
@@ -53,16 +53,17 @@ public class DoublyLinkedList<T extends Comparable<T>> {
 
     public void deleteItem(T item) {
 
-        if (this.head == null) {
+        if (this.head == null) { // check if list is empty
             System.out.println("You cannot delete from an empty list");
             return;
         } // null check
 
         NodeType<T> current = this.head;
         if (item.equals(current.info)) {
-            if (current.next == null) {
+            if (current.next == null) { // list only has one node
                 this.head = null;
-            } else {
+                this.tail = null;
+            } else { // list has more than 1 node
                 this.head = current.next;
                 this.head.back = null;
             } // if/else
@@ -79,11 +80,11 @@ public class DoublyLinkedList<T extends Comparable<T>> {
           return;
         } //  if
 
-        if (current != null) {
-            if (current.next != null) {
+        if (current != null) { // if item is found delete node
+            if (current.next != null) { // if item has a next
                 current.next.back = current.back;
             } // if
-            if (current.back != null) {
+            if (current.back != null) { // if item has a back
                 current.back.next = current.next;
             }
         } // delete the node
@@ -97,11 +98,11 @@ public class DoublyLinkedList<T extends Comparable<T>> {
 
         int length = 0;
 
-        if (head == null) {
+        if (head == null) { // if list is empty
             return length;
         }
         NodeType<T> current = head;
-        while (current != null) {
+        while (current != null) { // traverse list and count
             current = current.next;
             length++;
         } // count nodes
@@ -111,24 +112,24 @@ public class DoublyLinkedList<T extends Comparable<T>> {
 
     public void print() {
 
-        if (this.head == null) {
-            System.out.print(" ");
+        if (this.head == null) { // if list is empty
+            return;
         }
         NodeType<T> current = this.head;
-        while (current != null) {
+        while (current != null) { // traverse list and print
             System.out.print(current.info + " ");
             current = current.next;
 
         } // traverse list
-        System.out.println("");
+        System.out.println();
     } // print
 
     public void printReverse() {
-        if (this.head == null) {
+        if (this.head == null) { // if list is empty
             System.out.print(" ");
         }
         NodeType<T> current = this.tail;
-        while (current != null) {
+        while (current != null) { // traverse list and print
             System.out.print(current.info + " ");
             current = current.back;
 
