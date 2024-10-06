@@ -198,7 +198,7 @@ public class LinkedListDriver {
             case "s": // swap alt
                 System.out.print("The original list: ");
                 if (list.length() != 0) {
-                    list.print(); // print reversed modified
+                    list.print();
                 } else {
                     System.out.println();
                 } // check if list is null
@@ -219,7 +219,7 @@ public class LinkedListDriver {
                     System.out.println();
                 }
                 // print the reverse list if the list contains more than 2 elements
-                if (list.length() > 2) {
+                if (list.length() != 2 && list.length() != 0) {
                     System.out.print("The reverse list: ");
                     list.printReverse();
                 }
