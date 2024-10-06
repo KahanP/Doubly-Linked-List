@@ -107,6 +107,10 @@ public class LinkedListDriver {
 
                 break;
             case "d": // delete value
+                if (list.length() > 0) {
+                    System.out.print("The list is : ");
+                    list.print();
+                } // check if list is empty for print statement
                 System.out.print("Enter a " + dataType + " to delete: ");
                 String deleteInput = textScanner.nextLine();
                 try {
@@ -129,7 +133,7 @@ public class LinkedListDriver {
                 System.out.print("The reverse list: ");
                 list.printReverse();
                 break;
-            case "p": // print listh
+            case "p": // print list
                 System.out.print("The list is : ");
                 list.print();
                 break;

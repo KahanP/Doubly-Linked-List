@@ -87,6 +87,9 @@ public class DoublyLinkedList<T extends Comparable<T>> {
                 current.back.next = current.next;
             }
         } // delete the node
+        if (current == this.tail) {
+            this.tail = current.back;
+        } // update the tail
 
     } // deleteItem
 
@@ -140,16 +143,22 @@ public class DoublyLinkedList<T extends Comparable<T>> {
         } // check if list exists
         NodeType<T> current = this.tail;
         while (current != null) {
-            NodeType<T> temp = current.next;
-            current.next = current.back;
-            current.back = temp;
-
-            current = current.next;
+            NodeType<T> temp = current.next; // store next node
+            current.next = current.back; // swap next and back pointers
+            current.back = temp; // assign stored next to back
+            current = current.next; // move to next node
         } // reversal
-
+        // swap head and tail
         NodeType<T> tempHead = this.head;
         this.head = this.tail;
         this.tail = tempHead;
+
+        if (this.head != null) {
+            this.head.back = null;
+        } // set new head back to null
+        if (this.tail != null) {
+            this.tail.next = null;
+        } // set tail next to null
 
     } // reverseList
 
